@@ -4,7 +4,7 @@ import os
 import cgi
 import sys
 import urllib
-import simplejson
+import json as simplejson
 
 jinja2 = None
 
@@ -71,7 +71,7 @@ def dispatch_test0( dispatch ):
 def dispatch_gist_it( dispatch, location ):
     location = urllib.unquote( location )
     match = gist_it.Gist.match( location )
-    dispatch.response.headers['Content-Type'] = 'text/plain'; 
+    dispatch.response.headers['Content-Type'] = 'text/plain';
     if not match:
         dispatch.response.set_status( 404 )
         dispatch.response.out.write( dispatch.response.http_status_message( 404 ) )
@@ -91,7 +91,7 @@ def dispatch_gist_it( dispatch, location ):
             dispatch.response.out.write( "Unable to parse \"%s\": Not a valid repository path?" % ( location ) )
             dispatch.response.out.write( "\n" )
             return
-            
+
         if _CACHE_ and dispatch.request.get( 'flush' ):
             dispatch.response.out.write( memcache.delete( memcache_key ) )
             return
@@ -127,7 +127,7 @@ def dispatch_gist_it( dispatch, location ):
                 if test:
                     if test == 'json':
                         dispatch.response.headers['Content-Type'] = 'application/json';
-                        dispatch.response.out.write(simplejson.dumps({
+                        dispatch.response.out.write(json.dumps({
                             'gist': gist.value(),
                             'content': gist_content,
                             'html': gist_html,
@@ -135,7 +135,7 @@ def dispatch_gist_it( dispatch, location ):
                     elif False and test == 'example':
                         pass
                     else:
-                        dispatch.response.headers['Content-Type'] = 'text/plain' 
+                        dispatch.response.headers['Content-Type'] = 'text/plain'
                         dispatch.response.out.write( gist_html )
                     return
                 if _CACHE_:
