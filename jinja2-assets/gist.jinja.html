@@ -2,7 +2,7 @@
 <div class="gist-file">
     <div class="gist-data">
         {% if gist.highlight == 'prettify' or gist.highlight == 'deferred-prettify' %}
-        <pre class="prettyprint">{{ cgi_escape( document ) }}</pre>
+        <pre class="prettyprint linenums:{{linenums}}">{{ cgi_escape( document ) }}</pre>
         {% else %}
         <pre>{{ cgi_escape( document ) }}</pre>
         {% endif %}

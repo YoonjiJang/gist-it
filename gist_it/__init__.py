@@ -61,7 +61,7 @@ def parse_highlight( option ):
 def parse_slice( slice_option ):
     if slice_option is None:
         return ( 0, 0 )
-    
+
     match = re.match( r'^(-?\d+)$', slice_option )
     if match:
         return ( int( match.group(1) ), None )
@@ -81,15 +81,12 @@ def take_slice( content, start_line = None, end_line = None ):
 
     if (start_line == 0 and end_line == 0):
         return content
-    
+
     if (end_line == 0):
         return '\n'.join(content.splitlines()[start_line:])
 
     if (end_line is None):
         return content.splitlines()[start_line]
-
-    if (end_line > 0):
-        end_line += 1
 
     return '\n'.join(content.splitlines()[start_line:end_line])
 
@@ -100,7 +97,7 @@ class Gist:
         return [
             'user', 'repository', 'branch', 'path',
             'blob_path', 'blob_url',
-            'raw_path', 'raw_url', 
+            'raw_path', 'raw_url',
             'user_repository', 'user_repository_branch_path', 'user_repository_url',
             'start_line', 'end_line',
             'footer', 'style', 'highlight',

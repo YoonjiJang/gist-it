@@ -19,10 +19,13 @@ from versioned_memcache import memcache
 import gist_it
 from gist_it import take_slice, cgi_escape
 
-def render_gist_html( base, gist, document ):
+def render_gist_html( base, gist, document, total_linenums ):
     if jinja2 is None:
         return
-    result = jinja2.get_template( 'gist.jinja.html' ).render( cgi_escape = cgi_escape, base = base, gist = gist, document = document )
+
+    start_line = gist.start_line
+    linenums = total_linenums + start_line + 1 if start_line < 0 else start_line + 1
+    result = jinja2.get_template( 'gist.jinja.html' ).render( cgi_escape = cgi_escape, base = base, gist = gist, document = document, linenums = linenums )
     return result
 
 def render_gist_js( base, gist, gist_html  ):
@@ -116,7 +119,7 @@ def dispatch_gist_it( dispatch, location ):
                 response_content = response.content.decode('utf-8')
 
                 gist_content = take_slice( response_content, gist.start_line, gist.end_line )
-                gist_html = str( render_gist_html( base, gist, gist_content ) ).strip()
+                gist_html = str( render_gist_html( base, gist, gist_content, len(response_content.splitlines()) ) ).strip()
                 callback = dispatch.request.get( 'callback' );
                 if callback != '':
                     result = render_gist_js_callback( callback, gist, gist_html )
