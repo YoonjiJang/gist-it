@@ -2,11 +2,11 @@
 
 An AppEngine app to embed files from a github repository like a gist
 
-http://github.com/robertkrimen/gist-it
+https://github.com/YoonjiJang/gist-it
 
 ### Try it
 
-You can try it at [gist-it.appspot.com](http://gist-it.appspot.com)
+You can try it at [gist-it-161608.appspot.com](http://gist-it-161608.appspot.com)
 
 ### Usage
 
@@ -38,3 +38,7 @@ Robert Krimen (robertkrimen@gmail.com)
 
 * http://github.com/robertkrimen
 * http://search.cpan.org/~rokr/?R=D
+
+Younji Jang (yjang@letsee.io)
+
+* https://github.com/YoonjiJang

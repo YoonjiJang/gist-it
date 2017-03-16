@@ -9,7 +9,8 @@ $(function(){
     $script = $modal.find('.script');
     $output = $modal.find('.output');
 
-    $modal.find('form').on('submit', function(){
+    $modal.find('form').on('submit', function(e){
+      event.preventDefault();
         load();
     });
     $modal.bind('show', function(){
@@ -28,7 +29,8 @@ $(function(){
             $output.addClass('alert alert-warning').text("Enter a GitHub URL");
             return;
         }
-        url = GIST_IT_BASE + '/' + url;
+        var regex = /^https?\:\/\/(www\.)?github.com\/(.+)$/i;
+        url = GIST_IT_BASE + '/github/' + regex.exec(url)[2];
         $script.empty().append(
             $( '<pre class="prettyprint lang-html" />' ).text('<script src="' + url + '">\n</script>')
         );
