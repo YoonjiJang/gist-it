@@ -6,7 +6,7 @@ https://github.com/YoonjiJang/gist-it
 
 ### Try it
 
-You can try it at [gist-it-161608.appspot.com](http://gist-it-161608.appspot.com)
+You can try it at [gist-it-161608.appspot.com](https://gist-it-161608.appspot.com)
 
 ### Usage
 
