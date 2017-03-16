@@ -4,7 +4,7 @@ import os
 import cgi
 import sys
 import urllib
-import json as simplejson
+import json
 
 jinja2 = None
 
